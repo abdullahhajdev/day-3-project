@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:3000'; // Your Express backend
+const API_URL = 'https://day-3-project.onrender.com'; // Your Express backend
 
 function App() {
   const [users, setUsers] = useState([]);
