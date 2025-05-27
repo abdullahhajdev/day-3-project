@@ -5,10 +5,23 @@ import cors from 'cors';
 const app = express();
 
 const allowedOrigins = ['https://day-3-project-nine.vercel.app'];
+
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow REST clients or server-to-server
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 }));
+
+// Add explicit OPTIONS handler for preflight requests
+app.options('*', cors());
 
 app.use(express.json());
 
