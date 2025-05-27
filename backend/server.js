@@ -3,8 +3,10 @@ import pool from './db.js';
 import cors from 'cors';
 
 const app = express();
+
+const allowedOrigins = ['https://day-3-project-nine.vercel.app'];
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: allowedOrigins,
   credentials: true
 }));
 
