@@ -1,9 +1,11 @@
 import express from 'express';
 import pool from './db.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 const allowedOrigins = ['https://day-3-project-nine.vercel.app'];
 
 app.use(cors({
@@ -110,6 +112,6 @@ app.put('/users/:id', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
