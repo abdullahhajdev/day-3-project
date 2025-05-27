@@ -22,9 +22,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// Add explicit OPTIONS handler for preflight requests
-app.options('*', cors());
-
 app.use(express.json());
 
 // GET all users
